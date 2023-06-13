@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffd1dc;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #ff3366;
+      font-size: 0;
+      text-align: center;
+      margin-top: 20px;
+      animation: fade-in 2s ease-in-out forwards;
+    }
+
+    .message {
+      font-size: 24px;
+      text-align: center;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fade-in 2s ease-in-out forwards;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ffcf3b;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: confetti-fall 3s infinite;
+    }
+
+    @keyframes fade-in {
+      0% {
+        font-size: 0;
+        opacity: 0;
+      }
+      100% {
+        font-size: 40px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy Birthday!</h1>
+    <div class="message" id="message"></div>
+
+    <script>
+      const messageElement = document.getElementById("message");
+      const messages = [
+        "Wishing you a day filled with love, joy, and wonderful surprises!",
+        "May all your dreams and wishes come true. Happy birthday!",
+        "Here's to a fantastic year ahead! Happy birthday!",
+        "Sending you lots of love and warm wishes on your special day. Happy birthday!"
+      ];
+
+      // Generate a random message from the array
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      const randomMessage = messages[randomIndex];
+
+      // Update the message element with the random message
+      messageElement.textContent = randomMessage;
+
+      // Create confetti elements
+      const numConfetti = 100;
+      const container = document.querySelector(".container");
+      for (let i = 0; i < numConfetti; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = `${Math.random() * 100}%`;
+        confetti.style.animationDelay = `${Math.random() * 3}s`;
+        container.appendChild(confetti);
+      }
+    </script>
+  </div>
+</body>
+</html>
